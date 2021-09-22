@@ -1,6 +1,6 @@
 require("dotenv").config();
-const express = require("express");
 const mongodb = require("mongodb");
+const express = require("express");
 const app = express();
 
 const dreams = [
@@ -9,24 +9,22 @@ const dreams = [
   "Wash the dishes"
 ];
 
-//middleware
+
 app.use(express.static("public"));
-
 app.use(express.json());
-
 app.use((req,res,next) => {
   if(collection !== null){
-    next()
+    next();
   }else{
-    res.status(503).send()
+    res.status(503).send();
   }
 });
 
 //connecting to mongodb
-const dbName = "sample_airbnb";
-const collectionName = "listingsAndReviews"
+const dbName = "test";
+const collectionName = "users"
 
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@${process.env.HOST}`;
+const uri = `mongodb+srv://${process.env.USR}:${process.env.PASS}@${process.env.HOST}`;
 const client = new mongodb.MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 let collection = null;
 
@@ -40,16 +38,16 @@ client.connect()
   })
   .then(console.log)
 
-//get requests
+
+  //get requests
 app.get("/", (request, response) => {
-  if(collection !== null){
-    collection.find({}).toArray().then(result => response.json(result))
-  }
+  response.sendFile(__dirname + "/views/index.html");
 });
 
 app.get("/dreams", (request, response) => {
   response.json(dreams);
 });
+
 
 //listener
 const listener = app.listen(process.env.PORT, () => {
