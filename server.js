@@ -1,35 +1,57 @@
-// server.js
-// where your node app starts
-
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
+const mongodb = require("mongodb");
 const app = express();
 
-// our default array of dreams
 const dreams = [
   "Find and count some sheep",
   "Climb a really tall mountain",
   "Wash the dishes"
 ];
 
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
+//middleware
 app.use(express.static("public"));
 
-// https://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+app.use(express.json());
+
+app.use((req,res,next) => {
+  if(collection !== null){
+    next()
+  }else{
+    res.status(503).send()
+  }
 });
 
-// send the default array of dreams to the webpage
+//connecting to mongodb
+const dbName = "sample_airbnb";
+const collectionName = "listingsAndReviews"
+
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@${process.env.HOST}`;
+const client = new mongodb.MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+let collection = null;
+
+client.connect()
+  .then(() => {
+    return client.db(dbName).collection(collectionName);
+  })
+  .then(__collection => {
+    collection = __collection
+    return collection.find({}).toArray()
+  })
+  .then(console.log)
+
+//get requests
+app.get("/", (request, response) => {
+  if(collection !== null){
+    collection.find({}).toArray().then(result => response.json(result))
+  }
+});
+
 app.get("/dreams", (request, response) => {
-  // express helps us take JS objects and send them as JSON
   response.json(dreams);
 });
 
-// listen for requests :)
+//listener
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
