@@ -10,7 +10,8 @@ const dreams = [
 ];
 
 
-app.use(express.static("public"));
+//middleware
+app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use((req,res,next) => {
   if(collection !== null){
@@ -20,7 +21,8 @@ app.use((req,res,next) => {
   }
 });
 
-//connecting to mongodb
+
+//connect to mongodb
 const dbName = "test";
 const collectionName = "users"
 
@@ -39,7 +41,7 @@ client.connect()
   .then(console.log)
 
 
-  //get requests
+//get requests
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/views/index.html");
 });
