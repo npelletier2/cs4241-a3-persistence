@@ -1,0 +1,22 @@
+.order-box{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+.order{
+    border: 1px solid black;
+}
+
+h4, p{
+    margin: 12px;
+}
+
+h4{
+    font-size: large;
+}
+
+em{
+    font-style: normal;
+    font-weight: bold;
+}
