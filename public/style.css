@@ -2,10 +2,6 @@
   font-size: 110%;
 }
 
-@font-face{
-  font-display: swap;
-}
-
 body{
     background-color: #008080;
 }
