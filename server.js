@@ -85,26 +85,49 @@ app.get("/order-info", (req, res) => {
   })
 })
 
+app.get("/new-user.html", (req, res) => {
+  res.sendFile(__dirname + "/views/new-user.html");
+})
+
 
 //post requests
-app.post("/login", (req,res) => {
+app.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   
   users.find({
-    username,
-    password
+    username
   })
   .toArray()
   .then((data) => {
-    if(data.length === 1){//login success
+    if(data.length === 1){//user found
+      if(data[0].password === password){//correct password
+        req.session.user = username;
+        req.session.pass = password;
+        res.redirect("/main.html");
+      }else{//incorrect password
+        res.redirect("/");
+      }
+    }else{//user not found
       req.session.user = username;
       req.session.pass = password;
-      res.redirect("main.html");
-    }else{
-      res.redirect("/");
+      res.redirect("/new-user.html");
     }
   })
+})
+
+//make a new user
+//req.body = {}
+app.post("/new-user", (req, res) => {
+  users.insertOne({username: req.session.user, password: req.session.pass});
+  userData.insertOne({user: req.session.user, orders: []})
+  .then(() => res.redirect("main.html"));
+})
+
+//req.body = {}
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
 })
 
 //get a list of orders for a specified user
