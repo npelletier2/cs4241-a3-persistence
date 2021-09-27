@@ -2,13 +2,17 @@
   font-size: 110%;
 }
 
-body{
-    background-color: #008080;
+html, body{
+  height: 100%
 }
-  
-.window.centered{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+html{
+  display: table;
+  margin: auto;
+}
+
+body{
+  background-color: #008080;
+  display: table-cell;
+  vertical-align: middle;
 }
