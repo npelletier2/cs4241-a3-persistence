@@ -51,7 +51,6 @@ client.connect()
 app.get("/robots.txt", (req, res) => {
   res.sendFile(__dirname + "/robots.txt");
 })
-
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/views/index.html");
 });
