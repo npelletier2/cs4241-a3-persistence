@@ -1,13 +1,5 @@
-input[type=checkbox]{
+input[type=checkbox], input[type=radio]{
     height: 14px;
     width: 14px;
-}
-
-input[type=radio]{
-    height: 14px;
-    width: 14px;
-}
-
-label{
-    z-index: -1;
+    z-index: 3;
 }

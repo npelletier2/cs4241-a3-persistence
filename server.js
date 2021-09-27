@@ -3,12 +3,14 @@ const mongodb = require("mongodb");
 const crypto = require("crypto");
 const cookie = require("cookie-session");
 const favicon = require("serve-favicon");
+const helmet = require("helmet");
 const express = require("express");
 const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 const app = express();
 
 //middleware
 app.use(favicon(__dirname + "/public/favicon.ico"));
+//app.use(helmet());
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 
