@@ -1,6 +1,12 @@
 ## Ice Cream Order Logger
 https://a3-npelletier2.glitch.me/
 
+Note: There is a test user with some information already associated with it:
+
+Username: test
+
+Password: 123
+
 ### Goals
 Allow a user to document information about ice cream orders
 
