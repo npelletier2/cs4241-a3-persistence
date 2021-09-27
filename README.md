@@ -23,5 +23,5 @@ The CSS framework I used is 98.css. The point of this framework is to allow the 
 - Makes it easy and (typically) more efficient to serve a favicon, which is requested by browsers very frequently.
 `cookie-session`
 - Creates a `session` property in requests sent to the server, containing the cookies for that session.
-`helmet`
-- Sets a number of HTTP headers to make the application more secure.
+`serve-static`
+- Serves files from a static directory.
