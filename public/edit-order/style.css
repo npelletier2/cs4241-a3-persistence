@@ -1,0 +1,13 @@
+input[type=checkbox]{
+    height: 14px;
+    width: 14px;
+}
+
+input[type=radio]{
+    height: 14px;
+    width: 14px;
+}
+
+label{
+    z-index: -1;
+}

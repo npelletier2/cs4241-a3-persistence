@@ -6,10 +6,12 @@
 
 .order{
     border: 1px solid black;
+    text-align: left;
+    word-wrap: break-word;
 }
 
 h4, p{
-    margin: 12px;
+    margin: 12px 1px 12px 1px;
 }
 
 h4{
@@ -19,4 +21,8 @@ h4{
 em{
     font-style: normal;
     font-weight: bold;
+}
+
+#add-button{
+    text-align: center;
 }
