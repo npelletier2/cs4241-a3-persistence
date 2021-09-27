@@ -24,7 +24,7 @@ The authentication strategy I used is very simple: try to find the user in the d
 ### CSS framework
 The CSS framework I used is 98.css. The point of this framework is to allow the creation of user interfaces that mimic the look of Windows 98. The reason for using this framework is simply because I thought the idea of making an interface that looks like that was interesting. I figured that, since the purpose of my application isn't an incredibly serious one, I could choose a framework that wasn't made to be super professional. The aesthetic of Windows 98 isn't incredibly professional nowadays, but it's an aesthetic that I find appealing, and I thought it would convey the fact that this appplication was meant to be more fun than serious.
 
-## Middleware packages
+### Middleware packages
 `serve-favicon`
 - Makes it easy and (typically) more efficient to serve a favicon, which is requested by browsers very frequently.
 
